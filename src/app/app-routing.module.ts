@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { PoderesComponent } from './components/poderes/poderes.component';
 import { Poderes2Component } from './components/poderes2/poderes2.component';
 const routes: Routes = [
-  { path: 'poderes', component: PoderesComponent },
+  { path: '', component: Poderes2Component },
   { path: 'poderes2', component: Poderes2Component },
+  { path: '**', pathMatch: 'full', component: Poderes2Component },
 ];
 
 @NgModule({

@@ -18,8 +18,6 @@ import { PoderesService } from 'src/app/services/poderes.service';
   styleUrls: ['./poderes2.component.css'],
 })
 export class Poderes2Component implements OnInit {
-  asambleaList: any[] = [];
-
   botonDisabled: boolean = false;
   botonHidden: boolean = false;
 
@@ -31,6 +29,9 @@ export class Poderes2Component implements OnInit {
 
   formulario: FormGroup;
   nuevaAsamblea: FormGroup;
+
+  asambleaList$: Observable<any>;
+  collectionAsambleas: AngularFirestoreCollection<any>;
 
   inmueblePoder$: Observable<any>;
   collectionPoder: AngularFirestoreCollection<any>;
@@ -57,6 +58,11 @@ export class Poderes2Component implements OnInit {
     private _firestore: AngularFirestore,
     private formBuilder: FormBuilder
   ) {
+    this.collectionAsambleas = this._firestore.collection<any>(
+      `consultarAsambleaTest`
+    );
+    this.asambleaList$ = this.collectionAsambleas.valueChanges();
+
     this.collectionPoder = this._firestore.collection<any>(
       `${this.inmueblePoderPath}`
     );
@@ -81,9 +87,7 @@ export class Poderes2Component implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.traerAsambleas();
-  }
+  ngOnInit() {}
 
   activaAgregarAsamblea() {
     if (this.agregandoAsamblea === false) {
@@ -95,23 +99,15 @@ export class Poderes2Component implements OnInit {
 
   agregarAsamblea() {
     const asamblea = this.nuevaAsamblea.get('AsambleaNombre')!.value;
-    this._poderes.setAsambleas(asamblea).then(() => {
-      this.traerAsambleas();
-    });
-  }
 
-  traerAsambleas() {
-    this._poderes.getAsambleas().then((resp: any) => {
-      // console.log(resp.data);
-      for (let i = 0; i < resp.data.length; i++) {
-        if (this.asambleaList.includes(resp.data[i].asambleaId)) {
-          console.log('si incluye');
-        } else {
-          console.log('no incluye');
-          this.asambleaList.push(resp.data[i].asambleaId);
-        }
-      }
-    });
+    const asambleaCollection = this._firestore.collection(
+      'consultarAsambleaTest'
+    );
+    asambleaCollection
+      .doc(`${asamblea}`)
+      .set({ asambleaActiva: true, asambleaId: asamblea })
+      .then(() => {});
+    this.activaAgregarAsamblea();
   }
 
   selectAsamblea(a: string) {

@@ -14,13 +14,13 @@
           asamblea
         </button>
         <ul class="dropdown-menu">
-          <li *ngFor="let item of asambleaList">
+          <li *ngFor="let item of asambleaList$ | async">
             <a
               class="dropdown-item"
               (click)="selectAsamblea(item)"
               type="button"
             >
-              {{ item }}
+              {{ item.asambleaId }}
             </a>
           </li>
           <li><hr class="dropdown-divider" /></li>
@@ -42,14 +42,6 @@
           [value]="asamblea"
           disabled="true"
         />
-        <button
-          class="btn btn-success"
-          type="button"
-          id="button-addon2"
-          (click)="traerAsambleas()"
-        >
-          recargar
-        </button>
       </div>
 
       <form [formGroup]="formulario">

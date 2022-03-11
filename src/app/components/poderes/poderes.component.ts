@@ -65,10 +65,6 @@ export class PoderesComponent implements OnInit {
       Apoderado: ['', Validators.required],
       Poder: ['', Validators.required],
     });
-    // this.formulario = new FormGroup({
-    //   Apoderado: new FormControl(''),
-    //   Poder: new FormControl(''),
-    // });
   }
 
   ngOnInit() {

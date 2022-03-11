@@ -22,6 +22,7 @@
   position: absolute;
   margin-top: 20vh;
   text-align: center;
-  width: 80vh;
+  width: 85vh;
+  height: 20vh;
   z-index: 10000;
 }
