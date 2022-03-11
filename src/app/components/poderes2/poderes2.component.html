@@ -1,0 +1,202 @@
+<body
+  class="container"
+  style="display: flex; justify-content: center; position: relative"
+>
+  <div class="card" id="contentForm">
+    <div class="card-body">
+      <div class="input-group mb-3">
+        <button
+          class="btn btn-outline-secondary dropdown-toggle"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          asamblea
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let item of asambleaList">
+            <a
+              class="dropdown-item"
+              (click)="selectAsamblea(item)"
+              type="button"
+            >
+              {{ item }}
+            </a>
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a
+              (click)="activaAgregarAsamblea()"
+              class="dropdown-item text-danger"
+              type="button"
+            >
+              <strong>Agrega una asamblea </strong>
+            </a>
+          </li>
+        </ul>
+        <input
+          type="text"
+          class="form-control"
+          aria-label="Text input with dropdown button"
+          [placeholder]="asamblea"
+          [value]="asamblea"
+          disabled="true"
+        />
+        <button
+          class="btn btn-success"
+          type="button"
+          id="button-addon2"
+          (click)="traerAsambleas()"
+        >
+          recargar
+        </button>
+      </div>
+
+      <form [formGroup]="formulario">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Apoderado"
+            aria-label="Apoderado"
+            id="Apoderado"
+            name="Apoderado"
+            formControlName="Apoderado"
+          />
+
+          <button
+            class="btn btn-success"
+            type="submit"
+            id="button-addon2"
+            (click)="traerInmuebleApoderado()"
+          >
+            traer
+          </button>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Poder"
+            aria-label="Poder"
+            formControlName="Poder"
+          />
+          <button
+            class="btn btn-success"
+            type="button"
+            id="button-addon2"
+            type="submit"
+            (click)="traerInmueblePoder()"
+          >
+            buscar
+          </button>
+        </div>
+      </form>
+      <div class="row">
+        <div class="col">
+          <div *ngIf="inmuebleApoderadoData">
+            <p>
+              codigo:{{ inmuebleApoderadoData.codigo }} <br />
+              propietario:{{ inmuebleApoderadoData.propietario }}<br />
+              coeficiente: {{ inmuebleApoderadoData.coeficiente }}<br />
+              coeficienteVoto :
+              {{ inmuebleApoderadoData.coeficienteVoto }} <br />
+              estado :{{ inmuebleApoderadoData.estado }}
+            </p>
+          </div>
+
+          <div
+            class="list-group"
+            *ngFor="let item of inmueblesApoderados$ | async"
+          >
+            <button
+              class="list-group-item list-group-item-action"
+              ngClass="actrive"
+              (click)="setInmuebleApoderado(item.codigo)"
+            >
+              {{ item.codigo }}
+            </button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" *ngIf="inmueblePoderData">
+            <div class="card-body">
+              <p>
+                codigo:{{ inmueblePoderData.codigo }} <br />
+                propietario:{{ inmueblePoderData.propietario }}<br />
+                coeficiente: {{ inmueblePoderData.coeficiente }}<br />
+                coeficienteVoto :
+                {{ inmueblePoderData.coeficienteVoto }} <br />
+                estado : {{ inmueblePoderData.estado }}
+              </p>
+              <form [formGroup]="formulario">
+                <div class="input-group mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    [placeholder]="inmueblePoderData.codigo"
+                    aria-label="Poder"
+                    [value]="inmueblePoderData.codigo"
+                    disabled="true"
+                  />
+                  <button
+                    [hidden]="botonHidden"
+                    [disabled]="botonDisabled"
+                    class="btn btn-success"
+                    type="button"
+                    id="button-addon2"
+                    type="submit"
+                    (click)="agregarPoder()"
+                  >
+                    agregar
+                  </button>
+                  <button
+                    [hidden]="!botonHidden"
+                    class="btn btn-danger"
+                    type="button"
+                    id="button-addon2"
+                    type="submit"
+                    (click)="eliminarPoder()"
+                  >
+                    eliminar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" id="agregaAsamblea" *ngIf="agregandoAsamblea">
+    <div class="card-body">
+      <h2>Agrega una asamblea</h2>
+      <form [formGroup]="nuevaAsamblea">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            aria-label="AsambleaNombre"
+            formControlName="AsambleaNombre"
+          />
+          <button
+            class="btn btn-success"
+            type="button"
+            id="button-addon2"
+            type="submit"
+            (click)="agregarAsamblea()"
+          >
+            agregar
+          </button>
+          <button
+            class="btn btn-danger"
+            type="button"
+            id="button-addon2"
+            type="submit"
+            (click)="activaAgregarAsamblea()"
+          >
+            cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>

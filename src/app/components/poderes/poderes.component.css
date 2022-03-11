@@ -1,0 +1,49 @@
+#contentForm {
+  position: absolute;
+  margin-top: 20vh;
+  text-align: center;
+  width: 80vh;
+}
+#inmuebleData {
+  margin-top: 20vh;
+  text-align: center;
+  width: 80vh;
+  height: 80vh;
+  z-index: 10000;
+}
+/* #texto {
+  font-family: "Libre Baskerville", serif;
+}
+#titulo {
+  font-family: "Libre Baskerville", serif;
+} */
+
+/* @media only screen and (max-width: 768px) {
+    #contentForm {
+        position: absolute;
+        top: 50%;
+        margin-top: 30vh;
+        text-align: center;
+        width: 50vh;
+    }
+    }
+
+    @media only screen and (max-width: 1000px) {
+    #contentForm {
+        position: absolute;
+        top: 50%;
+        margin-top: 30vh;
+        text-align: center;
+        width: 50vw;
+    }
+    }
+
+    @media only screen and (min-width: 1001px) {
+    #contentForm {
+        position: absolute;
+        top: 50%;
+        margin-top: 30vh;
+        text-align: center;
+        width: 40vw;
+    }
+    } */

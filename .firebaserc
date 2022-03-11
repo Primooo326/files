@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "asambleavirtualdb": {
+      "hosting": {
+        "front": [
+          "asambleavirtualdb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "asambleavirtualdb"
+  }
+}

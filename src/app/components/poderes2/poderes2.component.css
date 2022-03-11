@@ -1,0 +1,27 @@
+#contentListaInmueble {
+  position: absolute;
+  margin-top: 20vh;
+  text-align: center;
+  width: 80vh;
+  height: 40vh;
+}
+#contentForm {
+  position: absolute;
+  margin-top: 20vh;
+  text-align: center;
+  width: 80vh;
+}
+#inmuebleData {
+  margin-top: 20vh;
+  text-align: center;
+  width: 80vh;
+  height: 80vh;
+  z-index: 10000;
+}
+#agregaAsamblea {
+  position: absolute;
+  margin-top: 20vh;
+  text-align: center;
+  width: 80vh;
+  z-index: 10000;
+}
