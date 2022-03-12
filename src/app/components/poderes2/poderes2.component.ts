@@ -25,7 +25,7 @@ export class Poderes2Component implements OnInit {
 
   mensaje = '';
 
-  asamblea = `Simulacro2`;
+  asamblea = `any`;
 
   formulario: FormGroup;
   nuevaAsamblea: FormGroup;
@@ -35,18 +35,18 @@ export class Poderes2Component implements OnInit {
 
   inmueblePoder$: Observable<any>;
   collectionPoder: AngularFirestoreCollection<any>;
-  inmueblePoderPath = 'Simulacro2';
+  inmueblePoderPath: string | undefined;
   inmueblePoderData: any;
   inmueblePoderConPoderes$: Observable<any> | undefined;
 
   inmuebleApoderado$: Observable<any>;
   collectionApoderado: AngularFirestoreCollection<any>;
-  inmuebleApoderadoPath = 'Simulacro2';
+  inmuebleApoderadoPath: string | undefined;
   inmuebleApoderadoData: any;
   inmueblesApoderados$: Observable<any> | undefined;
 
-  inmuebles$: Observable<any>;
-  collectionInmuebles: AngularFirestoreCollection<any>;
+  // inmuebles$: Observable<any>;
+  // collectionInmuebles: AngularFirestoreCollection<any>;
 
   paths = {
     poderes: `${this.asamblea}/Inmueble/Lista`,
@@ -73,10 +73,10 @@ export class Poderes2Component implements OnInit {
     );
     this.inmuebleApoderado$ = this.collectionApoderado.valueChanges();
 
-    this.collectionInmuebles = this._firestore.collection<any>(
-      `Simulacro2/Inmueble/Lista`
-    );
-    this.inmuebles$ = this.collectionInmuebles.valueChanges();
+    // this.collectionInmuebles = this._firestore.collection<any>(
+    //   `${this.asamblea}/Inmueble/Lista`
+    // );
+    // this.inmuebles$ = this.collectionInmuebles.valueChanges();
 
     this.formulario = this.formBuilder.group({
       Apoderado: ['', Validators.required],
@@ -247,7 +247,10 @@ export class Poderes2Component implements OnInit {
     const inmueblePoder = this.inmueblePoderData.codigo;
 
     //todo    agregar el poder al apoderado
-
+    console.log(
+      '-------------------------------------------------',
+      this.asamblea
+    );
     const collectionApoderado = this._firestore.collection(
       `${this.asamblea}/Inmueble/Lista/${inmuebleApoderado}/Poderes`
     );
@@ -257,7 +260,10 @@ export class Poderes2Component implements OnInit {
       puedeVotar: true,
       propietario: this.inmueblePoderData.propietario,
     });
-
+    console.log(
+      '2-------------------------------------------------',
+      this.asamblea
+    );
     //todo     recoger valores de coeficientes
     const collectionInmuebles = this._firestore.collection(
       `${this.asamblea}/Inmueble/Lista`
@@ -280,13 +286,13 @@ export class Poderes2Component implements OnInit {
 
       //todo     update inmueble apoderado y poder
 
-      this.collectionInmuebles.doc(`${inmuebleApoderado}`).update({
+      collectionInmuebles.doc(`${inmuebleApoderado}`).update({
         coeficiente: coeficienteTotal,
         coeficienteVoto: coeficienteVoto,
         totalCoeficiente: totalCoeficiente,
         totalCoeficienteVoto: totalCoeficienteVoto,
       });
-      this.collectionInmuebles
+      collectionInmuebles
         .doc(`${inmueblePoder}`)
         .update({
           estado: '3',
@@ -335,13 +341,13 @@ export class Poderes2Component implements OnInit {
 
       //todo     update inmueble apoderado y poder
 
-      this.collectionInmuebles.doc(`${inmuebleApoderado}`).update({
+      collectionInmuebles.doc(`${inmuebleApoderado}`).update({
         coeficiente: coeficienteTotal,
         coeficienteVoto: coeficienteVoto,
         totalCoeficiente: totalCoeficiente,
         totalCoeficienteVoto: totalCoeficienteVoto,
       });
-      this.collectionInmuebles
+      collectionInmuebles
         .doc(`${inmueblePoder}`)
         .update({
           estado: '1',

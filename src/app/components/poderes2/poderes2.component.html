@@ -17,7 +17,7 @@
           <li *ngFor="let item of asambleaList$ | async">
             <a
               class="dropdown-item"
-              (click)="selectAsamblea(item)"
+              (click)="selectAsamblea(item.asambleaId)"
               type="button"
             >
               {{ item.asambleaId }}

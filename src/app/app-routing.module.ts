@@ -5,7 +5,7 @@ import { Poderes2Component } from './components/poderes2/poderes2.component';
 const routes: Routes = [
   { path: '', component: Poderes2Component },
   { path: 'poderes2', component: Poderes2Component },
-  { path: '**', pathMatch: 'full', component: Poderes2Component },
+  { path: '**', pathMatch: 'full', redirectTo: 'poderes2' },
 ];
 
 @NgModule({

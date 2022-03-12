@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class PoderesService {
-  private backend = environment.backend;
+  private backend = 'environment.backend;';
 
   response: any;
 

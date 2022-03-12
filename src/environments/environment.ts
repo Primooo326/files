@@ -14,7 +14,6 @@ export const environment = {
     messagingSenderId: '341527512731',
     measurementId: 'G-SF8YGKWGB9',
   },
-  backend: 'http://localhost:5001/adminone-de50c/us-central1/',
   production: false,
 };
 
